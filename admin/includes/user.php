@@ -4,8 +4,8 @@
 		public $id;
 		public $username;
 		public $password;
-		public $firstname;
-		public $lastname;
+		public $first_name;
+		public $last_name;
 
 		public static function find_all_users() {
 			return self::find_this_query("SELECT * FROM users");
@@ -87,6 +87,42 @@
 			$sql .= $database->escape_string($this->password) . "', '";
 			$sql .= $database->escape_string($this->first_name) . "', '";
 			$sql .= $database->escape_string($this->last_name) . "')";
+
+
+			if($database->query($sql)) {
+				$this->id = $database->the_insert_id();
+				return true;
+			}else {
+				return false;
+			}
+			
+		}// Create Method
+
+		public function update() {
+			global $database;
+
+			$sql = "UPDATE users SET ";
+			$sql .= "username= '" . $database->escape_string($this->username)     . "', ";
+			$sql .= "password= '" . $database->escape_string($this->password)     . "', ";
+			$sql .= "first_name= '" . $database->escape_string($this->first_name) . "', ";
+			$sql .= "last_name= '" . $database->escape_string($this->last_name)   . "' ";
+			$sql .= " WHERE id= " . $database->escape_string($this->id);
+
+			$database->query($sql);
+
+			return (mysqli_affected_rows($database->connection) == 1) ? true : false;
+		}// Update Method
+
+		public function delete() {
+			global $database;
+
+			$sql = "DELETE from users ";
+			$sql .= "WHERE id=" . $database->escape_string($this->id);
+			$sql .= " LIMIT 1";
+
+			$database->query($sql);
+
+			return (mysqli_affected_rows($database->connection) == 1) ? true : false;
 		}
-	}
+	}r
 ?>

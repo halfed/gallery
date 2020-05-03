@@ -9,8 +9,13 @@
                         </h1>
 
 						<?php
-							
+							/*$user = new User();
+                            $user->username = "Example_username";
+                            $user->password = "Example_password";
+                            $user->first_name = "Ben";
+                            $user->last_name = "Kenobi";*/
 
+                            //$user->create();
 							//$result_set = User::find_all_users();
 							
 							/*while($row = mysqli_fetch_array($result_set)) {
@@ -23,13 +28,17 @@
 							
 							echo $user->username;*/
 
-							$users = User::find_all_users();
+							////$users = User::find_all_users();
 							/*foreach($users as $user) {
 								echo $user->id . "<br/>";
 							}*/
 
-							$found_user = User::find_user_by_id(2);
-							echo $found_user->username;
+							//$found_user = User::find_user_by_id(2);
+							//echo $found_user->username;
+
+                            $user = User::find_user_by_id(2);
+                            //$user->first_name = "Kilo";
+                            $user->delete();
 						?>
 
                         <ol class="breadcrumb">
