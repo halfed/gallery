@@ -9,8 +9,14 @@
                         </h1>
 
 						<?php
-							/*$user = new User();
-                            $user->username = "Example_username";
+							//$user = User::find_user_by_id(4);
+                            //$user->username = "bensolo";
+                            //$user->update();
+                            //$user->first_name = "ben";
+                            //$user->last_name = "solo";
+                            //$user->password = "123";
+                            //$user->save();
+                            /*$user->username = "Example_username";
                             $user->password = "Example_password";
                             $user->first_name = "Ben";
                             $user->last_name = "Kenobi";*/
@@ -20,13 +26,19 @@
 							
 							/*while($row = mysqli_fetch_array($result_set)) {
 								echo $row['username'] . "<br/>";
-							}
+							}*/
 
-							$found_user = User::find_user_by_id(2);
+							/*$found_user = User::find_user_by_id(2);
 							
 							$user = User::instantiation($found_user);
 							
 							echo $user->username;*/
+                            /*$user = User::find_user_by_id(5);
+                            $user->username = "aullera_nylon";
+                            $user->password = "999";
+                            $user->first_name = "aullera";
+                            $user->last_name = "nylon";
+                            $user->update();*/
 
 							////$users = User::find_all_users();
 							/*foreach($users as $user) {
@@ -36,9 +48,18 @@
 							//$found_user = User::find_user_by_id(2);
 							//echo $found_user->username;
 
-                            $user = User::find_user_by_id(2);
+                            //$user = User::find_user_by_id(3);
+                            //echo $user->first_name;
                             //$user->first_name = "Kilo";
-                            $user->delete();
+                            //$user->delete();
+                            $user = new User();
+
+                            $user->username = "tpac";
+                            $user->password = "900";
+                            $user->first_name = "Tupac";
+                            $user->last_name = "Shakur";
+
+                            $user->create();
 						?>
 
                         <ol class="breadcrumb">
