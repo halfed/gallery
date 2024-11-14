@@ -41,7 +41,7 @@ class Photo extends Db_object {
         }
     }
 
-    //Save photos to db
+    //Save photos to DB
     public function save() {
         if($this->photo_id) {
             $this->update();
@@ -56,7 +56,20 @@ class Photo extends Db_object {
 
             $target_path = SITE_ROOT . '/' . 'admin' . '/' . $this->upload_directory . '/' . $this->filename;
             
-            $this->create();
+            if(file_exists($target_path)) {
+                $this->errors[] = "The file {$this->filename} already exists";
+                return false;
+            }
+
+            if(move_uploaded_file($this->tmp_path, $target_path)) {
+                if($this->create()) {
+                    unset($this->temp_path);
+                    return true;
+                }
+            } else {
+                $this->errors[] = "the file directory probably does not have permission";
+                return false;
+            }
         }
     }
 
