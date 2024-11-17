@@ -1,6 +1,22 @@
 <?php include("includes/header.php"); ?>
     <?php if(!$session->is_signed_in()) {redirect("login.php");} ?>
 
+    <?php
+    $message = "";
+
+    if(isset($_POST['submit']) && isset($_FILES['file']['size']) > 0) {
+        $photo = new Photo();
+        $photo->title = $_POST['title'];
+        $photo->set_file($_FILES['file']);
+
+        if($photo->save()) {
+            $message = "Photo uploaded Succesfully";
+        } else {
+            $message = join("<br>" , $photo->errors); 
+        }
+    }
+    ?>
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -26,6 +42,7 @@
                             <small>Subheading</small>
                         </h1>
 
+                        <div><?php echo $message; ?><div>
                         <div class="col-md-6">
                             <form action="upload.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
@@ -33,7 +50,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="file" name="file_upload">
+                                    <input type="file" name="file">
                                 </div>
 
                                 <input type="submit" name="submit">
