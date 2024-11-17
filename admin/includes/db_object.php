@@ -65,8 +65,7 @@ class Db_object {
         $clean_properties = array();
 
         foreach($this->properties() as $key => $value) {
-            $clean_properties[$key] = $database->mysqli_real_escape_string($value);
-
+            $clean_properties[$key] = $database->escape_string($value);
         }
 
         return $clean_properties;

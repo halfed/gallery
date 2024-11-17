@@ -1,8 +1,8 @@
 <?php
 
-	defined('/') ? null : define('DS, DIRECTORY_SEPARATOR');
+	defined('DS') ? null : define('DS', 'DIRECTORY_SEPARATOR');
 
-	defined('/') ? null : define('SITE_ROOT', '/'.'Applications'.'/'.'php-projects'.'/'.'gallery');
+	defined('SITE_ROOT') ? null : define('SITE_ROOT', '/'.'Applications'. '/' .'php-projects'. '/' .'gallery');
 	define('INCLUDES_PATH', SITE_ROOT.'/'.'admin'.'/'.'includes');
 
 	require_once("functions.php");

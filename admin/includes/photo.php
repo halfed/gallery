@@ -35,15 +35,19 @@ class Photo extends Db_object {
             return false;
         }else {
             $this->filename = basename($file['name']);
-            $this->tmp_path = $file['tmp_path'];
+            $this->tmp_path = $file['tmp_name'];
             $this->type = $file['type'];
             $this->size = $file['size'];
         }
     }
 
+    public function picture_path() {
+        return $this->upload_directory.'/'.$this->filename;
+    }
+
     //Save photos to DB
     public function save() {
-        if($this->photo_id) {
+        if(isset($this->photo_id)) {
             $this->update();
         }else {
             if(!empty($this->errors)) {
@@ -54,8 +58,10 @@ class Photo extends Db_object {
                 return false;
             }
 
-            $target_path = SITE_ROOT . '/' . 'admin' . '/' . $this->upload_directory . '/' . $this->filename;
-            
+            //DOES NOT WORK: USING / INSTEAD
+            //$target_path = SITE_ROOT . 'DS' . 'admin' . 'DS' . $this->upload_directory . 'DS' . $this->filename;
+
+            $target_path = $this->upload_directory .'/'. $this->filename;            
             if(file_exists($target_path)) {
                 $this->errors[] = "The file {$this->filename} already exists";
                 return false;
@@ -63,7 +69,7 @@ class Photo extends Db_object {
 
             if(move_uploaded_file($this->tmp_path, $target_path)) {
                 if($this->create()) {
-                    unset($this->temp_path);
+                    unset($this->tmp_name);
                     return true;
                 }
             } else {
