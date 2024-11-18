@@ -16,6 +16,8 @@
 			//if(mysqli_connect_errno()) {
 			if($this->connection->connect_errno) {
 				die("DataBase Connection Failed Badly!" . $this->connection->connect_error);
+				// I kinda like this below better
+				//throw new RuntimeException("CONNECT FAILED: %s\n", mysqli_connect_error());
 			}
 		}
 
