@@ -14,8 +14,6 @@
 			return self::find_this_query("SELECT * FROM users");
 		}
 
-
-
 		public static function verify_user($username, $password) {
 			global $database;
 
