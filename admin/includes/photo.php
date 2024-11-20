@@ -79,7 +79,15 @@ class Photo extends Db_object {
         }
     }
 
+    public function delete_photo() {
+        if($this->delete()) {
+            //why is this not working, due to unlink using server paths
+            //$target_path = SITE_ROOT./admin.'/'.images/'.$this->picture_path();
+            $target_path = $this->picture_path();
+            return unlink($target_path) ? true : false;
+        } else {
+            return false;
+        }
+    }
 }
-
-
 ?>
