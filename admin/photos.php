@@ -2,6 +2,8 @@
 <?php if (!$session->is_signed_in()) {redirect("login.php"); } ?>
 <?php
     $photos = Photo::find_all();
+    echo SITE_ROOT;
+    //unlink(realpath('images/images-38.jpg'));
 ?>
 
 <!-- Navigation -->

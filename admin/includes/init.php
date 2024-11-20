@@ -2,7 +2,7 @@
 	error_reporting(E_ERROR | E_PARSE);
 	defined('DS') ? null : define('DS', 'DIRECTORY_SEPARATOR');
 
-	defined('SITE_ROOT') ? null : define('SITE_ROOT', '/'.'Applications'. '/' .'php-projects'. '/' .'gallery');
+	defined('SITE_ROOT') ? null : define('SITE_ROOT', '/' .'php-projects'. '/' .'gallery');
 	define('INCLUDES_PATH', SITE_ROOT.'/'.'admin'.'/'.'includes');
 
 	require_once("functions.php");
