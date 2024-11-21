@@ -2,8 +2,6 @@
 <?php if (!$session->is_signed_in()) {redirect("login.php"); } ?>
 <?php
     $photos = Photo::find_all();
-    echo SITE_ROOT;
-    //unlink(realpath('images/images-38.jpg'));
 ?>
 
 <!-- Navigation -->
@@ -49,11 +47,11 @@
                             <tr>
                                 <td>
                                     <div class="image-thumbnail">
-                                        <img class="image-thumbnail" src="<?php echo $photo->picture_path(); ?>" alt="">
+                                        <img class="image-thumbnail" src="<?php echo $photo->picture_path(); ?>" alt="" />
 
                                         <div class="pictures_link">
                                             <a href="delete_photo.php?id=<?php echo $photo->id ?>">Delete</a>
-                                            <a href="#">Edit</a>
+                                            <a href="edit_photo.php?id=<?php echo $photo->id ?>">Edit</a>
                                             <a href="#">View</a>
                                         </div>
                                         
